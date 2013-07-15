@@ -1,7 +1,7 @@
 Good coding practices
 =====================
 
-Good coding practices for students in computational scientific disciplines.
+Good coding practices for scientific programming.
 
 The wiki itself is here: https://github.com/mikpanko/good-coding-practices/wiki.
 
