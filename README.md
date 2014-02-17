@@ -3,7 +3,9 @@ Good coding practices
 
 Good coding practices for scientific programming.
 
-The wiki itself is here: https://github.com/mikpanko/good-coding-practices/wiki.
+Github pages front-end is [here](http://cogrhythms.github.io/good-coding-practices/).
+
+The wiki itself is [here](https://github.com/cogrhythms/good-coding-practices/wiki).
 
 We would be happy if you find the wiki useful. We will be even happier if you help improve it by adding new coding tips, links to great packages/libraries, or polishing text. Just make sure to follow a few simple guidelines:
 
