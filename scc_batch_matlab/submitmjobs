@@ -1,0 +1,40 @@
+#!/bin/csh
+#
+# Purpose: Running this script launches multiple serial jobs in batch.
+# Usage: scc1% submitmjobs ntasks batch_script "SGE options"
+# Runtime input parameters to submitmjobs:
+#   ntasks -- the number of tasks submitted to batch queue
+#   batch_script -- such as run_matlab_job, for MATLAB apps
+#   The OPTIONAL input must be valid SGE batch parameters.
+# Example:
+# scc1% submitmjobs 4 run_matlab_job "-l h_rt=09:00:00"
+#
+# In the above, running submitmjobs launches 4  run_matlab_job with a
+# wallclock limit of 9 hours for each of 4 tasks. The optional third
+# input specifies runtime limit. Without it, the default wallclock limit
+# is 2 hours for each task. Each of the 4 tasks is assigned a unique
+# index, task, ranged between 1 to 4. You can use
+# task's value to determine what data or action to take.
+#
+# The Sun Grid Engine batch preserves the current dir in batch.
+# A different dir may also be used
+# cd my_dir
+
+if ($# == 0) then
+  echo Usage is : submitmjobs 4 run_matlab_job ...
+  exit
+endif
+
+@ ntasks = $1
+set batch_script = $2
+set options = "$3"
+set myjob = $0$$_
+setenv MATLAB_NTASKS $ntasks
+foreach task (`/usr/bin/seq $ntasks`)
+  setenv MATLAB_TASK $task
+  qsub -N $myjob$task $options -V $batch_script
+end
+# The next job performs post processing AFTER the above jobs are done.
+# If you need this operation, remove # to activate
+#qsub -hold_jid "$myjob*" -V post_process_job
+# keep this line to ensure newline

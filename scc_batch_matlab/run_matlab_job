@@ -1,0 +1,21 @@
+#!/bin/csh
+# this script is a companion script for submitmjobs for MATLAB apps
+# it demonstrates how the passed "task" can be used to make each of
+# the ntasks to perform a different task or use different data. If your
+# app is a function m-file, "task" needs to be passed as input argument.
+# If your app is a script m-file, "task" is automatically available
+# because it shares the same workspace as myscript.
+# Use one form or the other.
+
+unsetenv DISPLAY
+# IMPORTANT: DONOT indent any of the below statements
+matlab -nojvm -singleCompThread  >! myoutput_$MATLAB_TASK << MATLAB_ENV
+% The below works like a script m-file between MATLAB_ENVs
+task = $MATLAB_TASK       % define matlab variable "task" from env variable
+ntasks = $MATLAB_NTASKS   % define number of tasks
+outname = ['output' num2str(task)] % associate output file name with "task"
+myfunc(task, outname)     % example to pass "task" to a function "myfunc"
+myscript                  % example to pass "task" to script "myscript"
+exit                      % don't forget to exit
+MATLAB_ENV
+# keep this line to ensure newline
