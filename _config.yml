@@ -1,4 +1,5 @@
-name: Your New Jekyll Site
+name: CRC Programming Practices Blog
+baseurl: /good-coding-practices
 markdown: redcarpet
 pygments: true
-exclude: _drafts
+exclude: ['_drafts', 'vendor']
