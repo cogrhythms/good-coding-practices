@@ -1,0 +1,5 @@
+name: CRC Programming Practices Blog
+baseurl: /good-coding-practices
+markdown: redcarpet
+pygments: true
+exclude: ['_drafts', 'vendor']
